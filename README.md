@@ -12,10 +12,14 @@ cd wildfly-project
 ## Executar
 
 - Executar testes: 
- ```bash mvn test````
+ ```bash 
+mvn test
+```
  
 - Faça o deploy e após o start do sevidor acesse:
- ```bash http://localhost:8080/VendasOnline/cliente/list.xhtml````
+ ```bash 
+http://localhost:8080/VendasOnline/cliente/list.xhtml
+```
 
 
 ## Pré-requisitos
