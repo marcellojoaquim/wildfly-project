@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.vendas.online.domain.Cliente;
+import com.vendas.online.exceptions.DaoException;
 import com.vendas.online.service.IClienteService;
 
 @Named
@@ -59,14 +60,24 @@ public class ClienteController implements Serializable{
 		}
 	}
 	
-	public Cliente edit(Cliente cliente) {
+	public Cliente edit(Cliente novoCliente) {
 		try {
-			this.cliente = clienteService.alterar(cliente);
-			this.clientes = clienteService.buscarTodos();
+			this.cliente = novoCliente;
+			setIsUpdate(true);
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage("growl", new FacesMessage("Erro ao tentar excluir o cliente"));
 		}
 		return cliente;
+	}
+	
+	public void update() throws DaoException {
+		if(getIsUpdate()) {
+			isUpdate = false;
+			clienteService.alterar(this.cliente);
+			setIsUpdate(isUpdate);
+			this.clientes = clienteService.buscarTodos();
+			this.cliente = new Cliente();
+		}
 	}
 
 	public Cliente getCliente() {
