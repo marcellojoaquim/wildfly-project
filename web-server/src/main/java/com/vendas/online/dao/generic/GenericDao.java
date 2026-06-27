@@ -16,7 +16,7 @@ public class GenericDao<T extends Persistente, E extends Serializable> implement
 
 private Class<T> persistenteClass;
 	
-	@PersistenceContext
+	@PersistenceContext(unitName = "prod")
     private EntityManager entityManager;
 	
 	public GenericDao(Class<T> persistenteClass) {
@@ -26,7 +26,7 @@ private Class<T> persistenteClass;
 	@Override
 	public T cadastrar(T entity) throws DaoException {
 		entityManager.persist(entity);
-		entityManager.getTransaction().commit();
+		//entityManager.getTransaction().commit();
 		return entity;
 	}
 

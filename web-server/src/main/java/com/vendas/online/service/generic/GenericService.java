@@ -9,7 +9,7 @@ import com.vendas.online.exceptions.DaoException;
 import com.vendas.online.exceptions.MaisDeUmRegistroException;
 
 
-public class GenericService<T extends Persistente, E extends Serializable> implements IGenericDao<T, E> {
+public class GenericService<T extends Persistente, E extends Serializable> implements IGenericService<T, E> {
 	
 	protected IGenericDao<T, E> dao;
 	

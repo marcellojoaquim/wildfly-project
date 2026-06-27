@@ -48,6 +48,26 @@ public class ClienteController implements Serializable{
 			FacesContext.getCurrentInstance().addMessage("growl", new FacesMessage("Erro ao tentar criar o cliente"));
 		}
 	}
+	
+	public void delete(Cliente cliente) {
+		try {
+			clienteService.excluir(cliente);
+			this.clientes = clienteService.buscarTodos();
+			this.cliente = new Cliente();
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage("growl", new FacesMessage("Erro ao tentar excluir o cliente"));
+		}
+	}
+	
+	public Cliente edit(Cliente cliente) {
+		try {
+			this.cliente = clienteService.alterar(cliente);
+			this.clientes = clienteService.buscarTodos();
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage("growl", new FacesMessage("Erro ao tentar excluir o cliente"));
+		}
+		return cliente;
+	}
 
 	public Cliente getCliente() {
 		return cliente;
